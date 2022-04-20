@@ -1,7 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+
+
+// Connection to a broadcast channel
+const bc = new BroadcastChannel('test_channel');
+
+// A handler that only logs the event to the console:
+bc.onmessage = event => { console.log(event); }
 
 function App() {
+
+  useEffect(() => {
+
+  }, [])
+
+  function PostMessage() {
+    bc.postMessage("sent from broadcastChannel test")
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +35,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={PostMessage}>postMessage</button>
       </header>
     </div>
   );
